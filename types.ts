@@ -1,0 +1,1 @@
+export type RequestConfigType = Omit<RequestInit, 'body' | 'method' | 'credentials' | 'headers' | 'mode'>;

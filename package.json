@@ -1,0 +1,38 @@
+{
+  "name": "instagram-post-extractor",
+  "version": "1.0.0",
+  "description": "A TypeScript library for extracting post data from Instagram",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npx tsc",
+    "prepare": "npm run build",
+    "start:dev": "npm run build && node dist/demo.js"
+  },
+  "keywords": [
+    "instagram",
+    "extractor",
+    "downloader",
+    "typescript",
+    "video",
+    "image"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.15.23",
+    "typescript": "^5.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/instagram-post-extractor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/instagram-post-extractor/issues"
+  },
+  "homepage": "https://github.com/yourusername/instagram-post-extractor#readme"
+}
