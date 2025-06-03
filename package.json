@@ -29,10 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/instagram-post-extractor.git"
+    "url": "git+https://github.com/killerwolf/instagram-data-extractor.git"
   },
   "bugs": {
-    "url": "https://github.com/killerwolf/instagram-post-extractor/issues"
+    "url": "https://github.com/killerwolf/instagram-data-extractor/issues"
   },
   "homepage": "https://github.com/killerwolf/instagram-data-extractor#readme",
   "bin": {

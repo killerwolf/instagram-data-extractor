@@ -1,4 +1,4 @@
-# Instagram Post Extractor
+# Instagram Data Extractor
 
 A TypeScript library for extracting post data from Instagram, including descriptions, author information, and media (images/videos).
 
@@ -74,3 +74,7 @@ node dist/cli.js extract <shortcode>
 ```
 
 Replace `<shortcode>` with the Instagram post shortcode (e.g., `DJ_1LHjIUKb`).
+
+## Credits
+
+This package is heavily inspired by [riad-azz/instagram-video-downloader](https://github.com/riad-azz/instagram-video-downloader).
