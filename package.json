@@ -1,5 +1,5 @@
 {
-  "name": "instagram-post-extractor",
+  "name": "instagram-data-extractor",
   "version": "1.0.0",
   "description": "A TypeScript library for extracting post data from Instagram",
   "main": "dist/index.js",
@@ -32,7 +32,10 @@
     "url": "git+https://github.com/yourusername/instagram-post-extractor.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/instagram-post-extractor/issues"
+    "url": "https://github.com/killerwolf/instagram-post-extractor/issues"
   },
-  "homepage": "https://github.com/yourusername/instagram-post-extractor#readme"
+  "homepage": "https://github.com/killerwolf/instagram-data-extractor#readme",
+  "bin": {
+    "instagram-data-extractor": "dist/cli.js"
+  }
 }

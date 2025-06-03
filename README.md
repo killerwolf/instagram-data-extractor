@@ -42,36 +42,6 @@ Extracts data from an Instagram post.
 
 Returns a Promise that resolves to an InstagramPostData object:
 
-```typescript
-interface InstagramPostData {
-  description: string;
-  author: {
-    username: string;
-    fullName: string;
-    isVerified: boolean;
-    profilePicUrl: string;
-    followersCount: number;
-  };
-  media: {
-    type: 'video' | 'image';
-    url: string;
-    thumbnailUrl: string;
-    dimensions: {
-      width: number;
-      height: number;
-    };
-    duration?: number;     // Only for videos
-    viewCount?: number;    // Only for videos
-    playCount?: number;    // Only for videos
-  };
-  musicInfo?: {           // Only for posts with music
-    artistName: string;
-    songName: string;
-    isOriginalAudio: boolean;
-    audioId: string;
-  };
-}
-```
 
 ## Error Handling
 
@@ -86,3 +56,21 @@ Make sure to wrap the `extractPost` call in a try-catch block to handle potentia
 ## License
 
 MIT
+
+## CLI Usage
+
+You can extract Instagram post data directly from the command line:
+
+### Using npx
+
+```sh
+npx instagram-data-extractor@latest extract <shortcode>
+```
+
+### Using node
+
+```sh
+node dist/cli.js extract <shortcode>
+```
+
+Replace `<shortcode>` with the Instagram post shortcode (e.g., `DJ_1LHjIUKb`).
