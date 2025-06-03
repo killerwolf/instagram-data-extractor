@@ -1,5 +1,5 @@
 {
-  "name": "instagram-data-extractor",
+  "name": "@h4md1/instagram-data-extractor",
   "version": "1.0.0",
   "description": "A TypeScript library for extracting post data from Instagram",
   "main": "dist/index.js",
