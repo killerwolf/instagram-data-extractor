@@ -5,15 +5,15 @@ A TypeScript library for extracting post data from Instagram, including descript
 ## Installation
 
 ```bash
-npm install instagram-post-extractor
+npm install @h4md1/instagram-data-extractor
 # or
-yarn add instagram-post-extractor
+yarn add @h4md1/instagram-data-extractor
 ```
 
 ## Usage
 
 ```typescript
-import { InstagramExtractor } from 'instagram-post-extractor';
+import { InstagramExtractor } from '@h4md1/instagram-data-extractor';
 
 async function getPostData() {
   try {
@@ -64,7 +64,7 @@ You can extract Instagram post data directly from the command line:
 ### Using npx
 
 ```sh
-npx instagram-data-extractor@latest extract <shortcode>
+npx @h4md1/instagram-data-extractor@latest extract <shortcode>
 ```
 
 ### Using node
