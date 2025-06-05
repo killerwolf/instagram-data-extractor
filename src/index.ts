@@ -1,6 +1,4 @@
 import { RequestConfigType } from "./types";
-import * as fs from 'fs';
-import * as path from 'path';
 
 export interface InstagramPostData {
   description: string;
@@ -104,16 +102,8 @@ export class InstagramExtractor {
       throw new Error(`Failed to fetch post data: ${response.statusText}`);
     }
 
-    const rawData = await response.json();
-
-    // Save raw data to a fixture file
-    const fixturesDir = path.join(__dirname, '..', 'fixtures');
-    if (!fs.existsSync(fixturesDir)) {
-      fs.mkdirSync(fixturesDir, { recursive: true });
-    }
-    fs.writeFileSync(path.join(fixturesDir, `${shortcode}.json`), JSON.stringify(rawData, null, 2));
-
-    const post = rawData.data.xdt_shortcode_media;
+    const data = await response.json();
+    const post = data.data.xdt_shortcode_media;
       if (!post) {
         throw new Error('Post not found');
       }

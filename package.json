@@ -11,7 +11,8 @@
   "scripts": {
     "build": "npx tsc",
     "prepare": "npm run build",
-    "start:dev": "npm run build && node dist/demo.js"
+    "demo": "npm run build && node dist/demo.js",
+    "capture": "npm run build && node dist/debug-fixtures.js"
   },
   "keywords": [
     "instagram",
