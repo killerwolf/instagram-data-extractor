@@ -4,6 +4,7 @@ import * as path from 'path';
 
 export interface InstagramPostData {
   description: string;
+  url: string;
   author: {
     username: string;
     fullName: string;
@@ -113,52 +114,51 @@ export class InstagramExtractor {
     fs.writeFileSync(path.join(fixturesDir, `${shortcode}.json`), JSON.stringify(rawData, null, 2));
 
     const post = rawData.data.xdt_shortcode_media;
-
-    if (!post) {
-      throw new Error('Post not found');
-    }
-
-    const description = post.edge_media_to_caption.edges[0]?.node.text || '';
-
-    return {
-      description,
-      author: {
-        username: post.owner.username,
-        fullName: post.owner.full_name,
-        isVerified: post.owner.is_verified,
-        profilePicUrl: post.owner.profile_pic_url,
-        followersCount: post.owner.edge_followed_by.count,
-      },
-      media: post.edge_sidecar_to_children?.edges.map((edge: any) => ({
-        type: edge.node.is_video ? 'video' : 'image',
-        url: edge.node.is_video ? edge.node.video_url : edge.node.display_url,
-        thumbnailUrl: edge.node.thumbnail_src || edge.node.display_url, // Fallback for thumbnail
-        dimensions: edge.node.dimensions,
-        ...(edge.node.is_video && {
-          duration: edge.node.video_duration,
-          viewCount: edge.node.video_view_count,
-          playCount: edge.node.video_play_count,
-        }),
-      })) || [{
-        type: post.is_video ? 'video' : 'image',
-        url: post.is_video ? post.video_url : post.display_url,
-        thumbnailUrl: post.thumbnail_src,
-        dimensions: post.dimensions,
-        ...(post.is_video && {
-          duration: post.video_duration,
-          viewCount: post.video_view_count,
-          playCount: post.video_play_count,
-        }),
-      }],
-
-      ...(post.clips_music_attribution_info && {
-        musicInfo: {
-          artistName: post.clips_music_attribution_info.artist_name,
-          songName: post.clips_music_attribution_info.song_name,
-          isOriginalAudio: post.clips_music_attribution_info.uses_original_audio,
-          audioId: post.clips_music_attribution_info.audio_id,
+      if (!post) {
+        throw new Error('Post not found');
+      }
+      const description = post.edge_media_to_caption.edges[0]?.node.text || '';
+      return {
+        description,
+        url: `https://www.instagram.com/p/${shortcode}/`,
+        author: {
+          username: post.owner.username,
+          fullName: post.owner.full_name,
+          isVerified: post.owner.is_verified,
+          profilePicUrl: post.owner.profile_pic_url,
+          followersCount: post.owner.edge_followed_by.count,
         },
-      }),
-    };
+        media: post.edge_sidecar_to_children?.edges.map((edge: any) => ({
+          type: edge.node.is_video ? 'video' : 'image',
+          url: edge.node.is_video ? edge.node.video_url : edge.node.display_url,
+          thumbnailUrl: edge.node.thumbnail_src || edge.node.display_url, // Fallback for thumbnail
+          dimensions: edge.node.dimensions,
+          ...(edge.node.is_video && {
+            duration: edge.node.video_duration,
+            viewCount: edge.node.video_view_count,
+            playCount: edge.node.video_play_count,
+          })
+        })) || [
+          {
+            type: post.is_video ? 'video' : 'image',
+            url: post.is_video ? post.video_url : post.display_url,
+            thumbnailUrl: post.thumbnail_src,
+            dimensions: post.dimensions,
+            ...(post.is_video && {
+              duration: post.video_duration,
+              viewCount: post.video_view_count,
+              playCount: post.video_play_count,
+            })
+          }
+        ],
+        ...(post.clips_music_attribution_info && {
+          musicInfo: {
+            artistName: post.clips_music_attribution_info.artist_name,
+            songName: post.clips_music_attribution_info.song_name,
+            isOriginalAudio: post.clips_music_attribution_info.uses_original_audio,
+            audioId: post.clips_music_attribution_info.audio_id,
+          }
+        })
+      };
   }
 }
