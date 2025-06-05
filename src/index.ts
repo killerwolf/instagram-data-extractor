@@ -1,6 +1,4 @@
 import { RequestConfigType } from "./types";
-import * as fs from 'fs';
-import * as path from 'path';
 
 export interface InstagramPostData {
   description: string;
@@ -104,13 +102,6 @@ export class InstagramExtractor {
     }
 
     const rawData = await response.json();
-
-    // Save raw data to a fixture file
-    const fixturesDir = path.join(__dirname, '..', 'fixtures');
-    if (!fs.existsSync(fixturesDir)) {
-      fs.mkdirSync(fixturesDir, { recursive: true });
-    }
-    fs.writeFileSync(path.join(fixturesDir, `${shortcode}.json`), JSON.stringify(rawData, null, 2));
 
     const post = rawData.data.xdt_shortcode_media;
 
